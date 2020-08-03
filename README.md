@@ -1,6 +1,6 @@
 # python-side-projects
 
-I wrote python scripts to solve some real problems in work:
+I wrote simple python scripts to solve some real problems in work:
 
 > Note: My scripts use python3.
 
