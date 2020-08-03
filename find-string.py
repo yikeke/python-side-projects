@@ -4,8 +4,8 @@
 
 import os
 
-# Use this filter_list when you want to skip checking if some files are in F2
-# filter_list = ['<file-name.xx>','<file-name.xx>',...]
+# Use this filter_list when you want to skip checking some files
+# filter_list = ['<file-name1.xx>','<file-name2.xx>',...]
 
 # Walks files in a given folder (e.g. RD1) and get all files' paths and filenames.
 for root, dirs, files in os.walk("<absolute-path-of-RD1>", topdown=True):
