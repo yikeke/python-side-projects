@@ -27,6 +27,7 @@ with open('/Users/coco/Documents/GitHub/python-side-projects/statistics-output-g
     earlist_repo_commits = json.load(f)
 
 total_weeks = len(earlist_repo_commits[0]["weeks"])
+weeks = earlist_repo_commits[0]["weeks"]
 
 for i in range(0, total_weeks):
     week_unix_timestamp = int(earlist_repo_commits[0]["weeks"][i]['w'])
@@ -42,7 +43,7 @@ with open(csv_file_path, 'w', newline='') as file:
     writer.writerow(first_row_values)
 
     # insert rows of contributor statistics
-    for n in range(len(contributor_statistics)-1, -1, -1):  # 倒序
+    for n in range(len(contributor_statistics)-1, -1, -1):  # 倒序 143 contributors
         contributor_values = []
         github_id = contributor_statistics[n]["author"]["login"]
         contributor_type = ''
@@ -50,11 +51,25 @@ with open(csv_file_path, 'w', newline='') as file:
         contributor_values = [github_id, contributor_type, avatar_url]
 
         commits = 0
-        for i in range(0, total_weeks): # [0,221)
-            try:
-                commits = commits + contributor_statistics[n]["weeks"][i]["c"]
+        flag = 1
+        for week in weeks: # [0,212)
+            # print(week["w"])
+            for week_dict in contributor_statistics[n]["weeks"]: # 211
+                # week_dict is a dict
+                # print(type(week_dict))
+                # print(week_dict["c"]) 
+                # for values in week_dict.values():
+                #     if week["w"] in values:
+                if week_dict["w"] == week["w"]:
+                    # print(week_dict["c"])
+                    commits += week_dict["c"] # last one:
+                    flag = 1
+                    contributor_values.append(commits)
+                    break
+                else:
+                    flag = 0
+            if flag == 0:
                 contributor_values.append(commits)
-            except Exception as e:
-                contributor_values.append('0')
 
         writer.writerow(contributor_values)
+
