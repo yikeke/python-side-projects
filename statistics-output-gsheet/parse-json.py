@@ -65,17 +65,20 @@ def merge_json_files(base_file_path, append_file_path):
     # os.remove(append_file_path)
 
 if __name__ == '__main__':
+    # Generate several json files according to the requests
     requested_url = ['https://api.github.com/repos/pingcap/docs-cn/stats/contributors', 'https://api.github.com/repos/pingcap/docs/stats/contributors', 'https://api.github.com/repos/pingcap/docs-dm/stats/contributors', 'https://api.github.com/repos/pingcap/docs-tidb-operator/stats/contributors']
-    # Create a final version of json file
+    json_file_list = request_json_files(requested_url)
+    # print(json_file_list)
+
+    # Create the final version of json file to be merged in
     base_file_path = dirname + '/merged_json_file.json'
     with open(base_file_path, 'w') as f1:
         with open(dirname + '/json_file_1.json', 'r') as f2:
             copy_content = json.load(f2)
             json.dump(copy_content, f1)
 
-    json_file_list = request_json_files(requested_url)
-    print(json_file_list)
-    for n in range(1,len(request_json_files(requested_url))): # n = [1, 4)
+    # Check the number of json files and merge them to base_file_path
+    for n in range(1,len(json_file_list)): # n = [1, 4)
         append_file_path = json_file_list[n]
         merge_json_files(base_file_path, append_file_path)
 
