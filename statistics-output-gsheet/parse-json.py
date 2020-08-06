@@ -18,7 +18,7 @@ def request_json_files(requested_url): # requested_url is a dict
     for i in range(0, json_files_num):
         request = requests.get(requested_url[i]) # 'https://api.github.com/repos/pingcap/docs-cn/stats/contributors'
         python_data = json.loads(request.text)  # python_data is a python list
-        new_json_filepath = dirname + '/json_file_' + str(i) + '.json'
+        new_json_filepath = dirname + '/json_file_' + str(i+1) + '.json'
         new_json_file=open(new_json_filepath,"w")
         json.dump(python_data,new_json_file,indent=4)
         new_json_file.close
@@ -70,7 +70,7 @@ if __name__ == '__main__':
     json_file_list = request_json_files(requested_url)
     # print(json_file_list)
 
-    # Create the final version of json file to be merged in
+    # Create the final version of json file and copy the contents of json_file_1.json into it
     base_file_path = dirname + '/merged_json_file.json'
     with open(base_file_path, 'w') as f1:
         with open(dirname + '/json_file_1.json', 'r') as f2:
