@@ -17,8 +17,9 @@ gc = gspread.authorize(credentials)
 sh = gc.open('Pull Request/Issue Status Track 2019')
 # worksheet = sh.get_worksheet(0)
 contributor_sheet = sh.worksheet("docs-cn/all-contributor-commits")
+contributor_sheet.clear()
 
-json_file = '/Users/coco/Documents/GitHub/python-side-projects/statistics-output-gsheet/example-statistics.json'
+json_file = '/Users/coco/Documents/GitHub/python-side-projects/statistics-output-gsheet/merged_json_file.json'
 
 with open(json_file) as f:
     contributor_statistics = json.load(f)
