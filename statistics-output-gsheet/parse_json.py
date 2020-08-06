@@ -18,12 +18,29 @@ def request_json_files(requested_url): # requested_url is a dict
     for i in range(0, json_files_num):
         request = requests.get(requested_url[i]) # 'https://api.github.com/repos/pingcap/docs-cn/stats/contributors'
         python_data = json.loads(request.text)  # python_data is a python list
+
+        # Generate json files
         new_json_filepath = dirname + '/json_file_' + str(i+1) + '.json'
         new_json_file=open(new_json_filepath,"w")
         json.dump(python_data,new_json_file,indent=4)
         new_json_file.close
+
         json_file_list.append(new_json_filepath)
+
     return json_file_list
+
+def find_earlist_repo(json_file_list):
+    # Confirm the start week
+    for i in range(0,len(json_file_list)):
+        with open(json_file_list[i], 'r') as file:
+            file_content = json.load(file)
+        if i == 0:
+            start_week = file_content[0]["weeks"][0]["w"]
+        else:
+            if file_content[0]["weeks"][0]["w"] < start_week:
+                start_week = file_content[0]["weeks"][0]["w"]
+                earlist_repo = i
+    return earlist_repo
 
 def merge_json_files(base_file_path, append_file_path):
     # This function is specifically for merging the json files from 'https://api.github.com/repos/org-name/repo-name/stats/contributors' requests.
@@ -35,6 +52,7 @@ def merge_json_files(base_file_path, append_file_path):
         base_file_content = json.load(base_file)
         base_file_len = len(base_file_content)
     for i in range(0, append_file_len): # Start reading through append_file's key
+        pin = 0
         for j in range(0, base_file_len):
             # if the author from append_file = the author from base_file
             if append_file_content[i]["author"]["login"] == base_file_content[j]["author"]["login"]:
@@ -51,6 +69,10 @@ def merge_json_files(base_file_path, append_file_path):
                             base_file_content[j]["weeks"][m]["a"] = int(base_file_content[j]["weeks"][m]["a"]) + int(append_file_content[i]["weeks"][n]["a"])
                             base_file_content[j]["weeks"][m]["d"] = int(base_file_content[j]["weeks"][m]["d"]) + int(append_file_content[i]["weeks"][n]["d"])
                             base_file_content[j]["weeks"][m]["c"] = int(base_file_content[j]["weeks"][m]["c"]) + int(append_file_content[i]["weeks"][n]["c"])
+                pin = 1
+        # if the author from append_file is distinct from base_file, add a new entry in base_file_content
+        if pin == 0:
+            base_file_content.append(append_file_content[i])
 
     # Write the merging changes to the base file
     try:
@@ -70,6 +92,11 @@ if __name__ == '__main__':
     json_file_list = request_json_files(requested_url)
     # print(json_file_list)
 
+    # weeks csv data should be based on this
+    total_weeks_base = find_earlist_repo(json_file_list)
+    earlist_repo_file = json_file_list[total_weeks_base]
+    print(earlist_repo_file)
+
     # Create the final version of json file and copy the contents of json_file_1.json into it
     base_file_path = dirname + '/merged_json_file.json'
     with open(base_file_path, 'w') as f1:
@@ -81,10 +108,6 @@ if __name__ == '__main__':
     for n in range(1,len(json_file_list)): # n = [1, 4)
         append_file_path = json_file_list[n]
         merge_json_files(base_file_path, append_file_path)
-
-
-
-
 
 ################# Deprecated code
 # def request_json_files(requested_url): # requested_url is a dict

@@ -6,6 +6,7 @@ import requests
 import csv
 import os
 import sys
+# from parse_json import earlist_repo_file
 
 dirname, filename = os.path.split(os.path.abspath(sys.argv[0]))
 
@@ -16,12 +17,19 @@ with open(json_file) as f:
     # print(len(contributor_statistics)) result: 100 个 contributor
     # print(len(contributor_statistics[0]["weeks"]))  # Python dictionary: 211 weeks (Jul 24, 2016 – Aug 5, 2020)
     # print(str(contributor_statistics[0]["weeks"][0]["w"]))  # String: the "w" unix timestamp
+    total_contributor = len(contributor_statistics)
 
 # Initiate the first row of the gsheet
 first_row_values = ['Github ID', 'Contributor Type', 'Avatar URL']
-total_weeks = len(contributor_statistics[0]["weeks"])
+
+# with open(earlist_repo_file) as f:
+with open('/Users/coco/Documents/GitHub/python-side-projects/statistics-output-gsheet/json_file_2.json') as f:
+    earlist_repo_commits = json.load(f)
+
+total_weeks = len(earlist_repo_commits[0]["weeks"])
+
 for i in range(0, total_weeks):
-    week_unix_timestamp = int(contributor_statistics[0]["weeks"][i]['w'])
+    week_unix_timestamp = int(earlist_repo_commits[0]["weeks"][i]['w'])
     week = datetime.utcfromtimestamp(week_unix_timestamp).strftime('%Y-%m-%d')
     first_row_values.append(week)
 
@@ -43,7 +51,10 @@ with open(csv_file_path, 'w', newline='') as file:
 
         commits = 0
         for i in range(0, total_weeks): # [0,221)
-            commits = commits + contributor_statistics[n]["weeks"][i]["c"]
-            contributor_values.append(commits)
+            try:
+                commits = commits + contributor_statistics[n]["weeks"][i]["c"]
+                contributor_values.append(commits)
+            except Exception as e:
+                contributor_values.append('0')
 
         writer.writerow(contributor_values)
