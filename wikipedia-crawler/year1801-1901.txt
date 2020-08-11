@@ -8824,7 +8824,9 @@ https://zh.wikipedia.org/wiki/Category:1872年出生
 藍木
 西多尼奥·拜斯
 西澤吉治
+赛金花``
 https://zh.wikipedia.org/wiki/Category:1873年出生
+赫伯特·克拉克·胡佛``
 瑪格麗特·邦德菲爾德
 吉迪翁·布兰德·范齐尔
 阿道夫·弗里德里希 (梅克伦堡-什未林)
@@ -10832,6 +10834,7 @@ User:Yinweichen/Testpage4
 冯耿光
 冯超然
 凌鉞
+宋教仁``
 https://zh.wikipedia.org/wiki/Category:1883年出生
 哈格普·奥斯哈根
 恩奈斯特·安塞美
@@ -12038,6 +12041,7 @@ F·W·穆瑙
 库乌拉·栋杜
 弗朗西丝·马里恩
 弗朗西斯科·卡纳罗
+歐文·柏林``
 https://zh.wikipedia.org/wiki/Category:1889年出生
 埃德加·阿德里安，第一代阿德里安男爵
 亚历山德拉·瓦西里耶夫娜·阿尔丘希娜
@@ -12239,8 +12243,11 @@ https://zh.wikipedia.org/wiki/Category:1889年出生
 哈里·奈奎斯特
 喬治·科奧茲
 喬治·蒂埃里·阿讓利厄
+聂荣臻``
+闻一多``
+瞿秋白``
 https://zh.wikipedia.org/wiki/Category:1890年出生
-白求恩
+白求恩``
 休·比佛
 荒勝文策
 埃德温·霍华德·阿姆斯特朗
@@ -13645,6 +13652,7 @@ E·V·戈登
 魏復古
 吴芳吉
 王家鴻
+贺龙``
 https://zh.wikipedia.org/wiki/Category:1897年出生
 约翰·阿尔伯格
 亚历山大·科罗布科夫
@@ -13846,6 +13854,8 @@ https://zh.wikipedia.org/wiki/Category:1897年出生
 易作霖
 杨秀峰
 姚醒吾
+叶剑英``
+朱光潜``
 https://zh.wikipedia.org/wiki/Category:1898年出生
 阿希尔·范阿克
 阿尔瓦尔·阿尔托
@@ -14047,6 +14057,9 @@ C·S·路易斯
 朱自清
 赵登禹
 趙濟羹
+田汉``
+周恩来``
+刘少奇``
 https://zh.wikipedia.org/wiki/Category:1899年出生
 費爾哈特·阿巴斯
 博德金·亞當斯
@@ -14650,3 +14663,4 @@ J·D·伯纳尔
 杨之华
 杨云竹
 俞作豫
+華特·迪士尼``

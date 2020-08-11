@@ -1,3 +1,4 @@
+注意：1902 年后的数据不完全，如果有分类超过 200 条页面的，需要确定 200 条之后的页面。比如 https://zh.wikipedia.org/wiki/Category:1902年出生
 https://zh.wikipedia.org/wiki/Category:1902年出生
 下一页
 胡步三
@@ -200,6 +201,7 @@ User:Jane9306/沙盒/王錫山
 孙士敦
 雅科夫·斯穆什克维奇
 米哈伊尔·安德列耶维奇·苏斯洛夫
+
 https://zh.wikipedia.org/wiki/Category:1903年出生
 克劳迪奥·阿劳
 狄奧多·阿多諾
