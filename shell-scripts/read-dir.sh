@@ -1,5 +1,7 @@
 #! /bin/bash
 
+# 在终端执行hack/read-dir.sh '/Users/coco/Documents/GitHub/docs-dm'
+
 function read_dir(){
     for file in `ls $1`       #注意此处这是两个反引号，表示运行系统命令
     do
@@ -7,8 +9,12 @@ function read_dir(){
         then
             read_dir $1"/"$file
         else
-            echo $1"/"$file;   #在此处处理文件即可
-            # python3 scripts/check-tags.py $1"/"$file;
+            # echo $file;
+            if [[ $file =~ '.md' ]]
+            then
+                # echo $1"/"$file;   #在此处处理文件即可
+                python3 hack/check-tags.py $1"/"$file
+            fi
         fi
     done
 }   
