@@ -6,5 +6,6 @@ import sys
 for title in sys.argv[1:]:
     title = title.lower()
     title = title.replace(' ','-')
+    title = title.replace('.','')
 
 print(title)
